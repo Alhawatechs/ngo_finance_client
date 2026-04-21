@@ -1,0 +1,25 @@
+/* Project register & amendment: 0.5px border, white bg on focus, hide help when control focused */
+
+.project-register-amendment-form input,
+.project-register-amendment-form textarea,
+.project-register-amendment-form button[role="combobox"] {
+  border-width: 0.5px !important;
+}
+
+.project-register-amendment-form input:focus,
+.project-register-amendment-form textarea:focus,
+.project-register-amendment-form button[role="combobox"]:focus {
+  background: #fff !important;
+}
+
+.project-register-amendment-form button[role="combobox"][data-state="open"] {
+  background: #fff !important;
+}
+
+/* Hide help text when any control in the same group is focused */
+.project-register-amendment-form .form-field-group:has(input:focus) .form-help,
+.project-register-amendment-form .form-field-group:has(textarea:focus) .form-help,
+.project-register-amendment-form .form-field-group:has(button:focus) .form-help,
+.project-register-amendment-form .form-field-group:has([data-state="open"]) .form-help {
+  display: none !important;
+}

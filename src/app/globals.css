@@ -1,0 +1,1334 @@
+/* App styles: only @tailwind at top (no @import). Any "@import at top" warning from one-google-bar is from Google's stylesheet, not this file — see frontend/KNOWN_CONSOLE_WARNINGS.md */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design system: one-way approach for colors, typography, and layout.
+  See docs/DESIGN.md. Use shadcn/ui components and theme tokens.
+*/
+
+/* 72 Font (SAP) - default stack font */
+@font-face {
+  font-family: '72';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Light-full.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Light-full.woff') format('woff');
+}
+@font-face {
+  font-family: '72';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Regular-full.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Regular-full.woff') format('woff');
+}
+@font-face {
+  font-family: '72';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Italic-full.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Italic-full.woff') format('woff');
+}
+@font-face {
+  font-family: '72';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Semibold-full.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Semibold-full.woff') format('woff');
+}
+@font-face {
+  font-family: '72';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Bold-full.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/SAP/theming-base-content@master/content/Base/baseLib/baseTheme/fonts/72-Bold-full.woff') format('woff');
+}
+
+/*
+  Professional Color Palette
+  ============================
+  1. Primary: Forest green (#14532d) — brand, shell header/sidebar, buttons, focus ring
+  2. Neutral: Gray scale — text, backgrounds, borders
+  3. Accent tints: Emerald-* for highlights; amber for secondary emphasis where needed
+  4. Success / Danger: semantic greens and reds for states
+*/
+
+@layer base {
+  :root {
+    /* Font 72 (SAP) - system-wide default */
+    --font-sans: '72', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Primary — forest green (NGO finance brand, matches marketing) */
+    --primary: 142 61% 20%;
+    --primary-light: 142 35% 94%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Backgrounds — default page canvas is white; muted/secondary tokens stay gray for strips and hovers */
+    --background: 0 0% 100%;
+    --foreground: 220 20% 14%;
+    
+    /* Cards & Surfaces */
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 14%;
+    
+    /* Secondary */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 224 71% 35%;
+    
+    /* Muted */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    
+    /* Accent */
+    --accent: 142 32% 95%;
+    --accent-foreground: 142 55% 22%;
+    
+    /* States */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Borders & Inputs */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 142 61% 28%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-size: var(--app-font-size, 14px);
+    line-height: 1.5;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Ensure 72 font cascades; white background; no focus ring */
+  input, button, select, textarea, [role="combobox"], [role="listbox"] {
+    font-family: inherit;
+  }
+  input, select, textarea, [role="combobox"] {
+    background-color: #ffffff !important;
+  }
+}
+
+/* Table titles/headers — uppercase across the finance system and all projects */
+table thead th {
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold text-gray-900;
+  letter-spacing: -0.02em;
+}
+
+h1 { @apply text-2xl leading-tight; }
+h2 { @apply text-xl leading-tight; }
+h3 { @apply text-lg leading-snug; }
+h4 { @apply text-base leading-snug; }
+
+p { @apply text-gray-600 leading-relaxed; }
+
+/* Scrollbar - Minimal */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Sidebar scrollbar */
+.scrollbar-primary::-webkit-scrollbar,
+.scrollbar-blue::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-primary::-webkit-scrollbar-track,
+.scrollbar-blue::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb,
+.scrollbar-blue::-webkit-scrollbar-thumb {
+  @apply bg-transparent rounded-full;
+}
+
+.scrollbar-primary:hover::-webkit-scrollbar-thumb,
+.scrollbar-blue:hover::-webkit-scrollbar-thumb {
+  @apply bg-primary-dark;
+}
+
+/* Settings: Reduce motion, high contrast, focus indicator */
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-delay: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+html.high-contrast {
+  --ring: 0 0% 0%;
+}
+html.high-contrast body {
+  @apply text-gray-900;
+}
+html.high-contrast .border,
+html.high-contrast [class*="border"] {
+  border-color: rgb(17 24 39) !important;
+}
+
+html.large-focus-indicator *:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Professional Utility Classes */
+@layer utilities {
+  /* Cards */
+  .card {
+    @apply bg-white rounded-xl border border-gray-200;
+    box-shadow: 0 1px 3px rgba(30, 58, 138, 0.06);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+
+  .card-hover:hover {
+    @apply border-primary/30;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.12);
+    transform: translateY(-1px);
+  }
+
+  .card-body { @apply p-5; }
+  .card-header { @apply px-5 py-4 border-b border-gray-100; }
+  .card-footer { @apply px-5 py-3 border-t border-gray-100; }
+
+  /* Buttons - Primary Dark Blue */
+  .btn {
+    @apply inline-flex items-center justify-center font-medium transition-all duration-150;
+    @apply rounded-lg text-sm px-4 py-2.5 gap-2;
+    @apply focus:outline-none focus:ring-[0.5px] focus:ring-ring focus:ring-offset-0;
+  }
+
+  .btn-sm { @apply text-xs px-3 py-2; }
+  .btn-lg { @apply text-base px-5 py-3; }
+
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground border border-primary;
+    @apply hover:bg-primary-dark hover:border-primary-dark;
+    @apply active:bg-primary-dark;
+    @apply focus:ring-[0.5px] focus:ring-ring;
+  }
+
+  .btn-secondary {
+    @apply btn bg-primary/10 text-primary border border-primary/30;
+    @apply hover:bg-primary/15 hover:border-primary/40;
+    @apply active:bg-primary/20;
+    @apply focus:ring-[0.5px] focus:ring-ring;
+  }
+
+  .btn-success {
+    @apply btn bg-emerald-600 text-white border border-emerald-600;
+    @apply hover:bg-emerald-700 hover:border-emerald-700;
+    @apply focus:ring-[0.5px] focus:ring-ring;
+  }
+
+  .btn-danger {
+    @apply btn bg-red-600 text-white border border-red-600;
+    @apply hover:bg-red-700 hover:border-red-700;
+    @apply focus:ring-[0.5px] focus:ring-ring;
+  }
+
+  .btn-outline-primary {
+    @apply btn bg-transparent text-primary border border-primary/50;
+    @apply hover:bg-primary hover:text-primary-foreground hover:border-primary;
+    @apply focus:ring-[0.5px] focus:ring-ring;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-gray-600 border border-transparent;
+    @apply hover:bg-primary/10 hover:text-primary;
+  }
+
+  .btn-link {
+    @apply btn bg-transparent text-primary border-0 underline-offset-4;
+    @apply hover:underline hover:text-primary-dark;
+    @apply p-0;
+  }
+
+  /* Form Controls */
+  .form-control {
+    @apply w-full px-3.5 py-2.5 text-sm rounded-lg;
+    @apply bg-white border border-gray-300 text-gray-900;
+    @apply placeholder:text-gray-400;
+    @apply transition-all duration-150;
+    @apply focus:outline-none focus:ring-[0.5px] focus:ring-ring focus:border-slate-400;
+    @apply hover:border-primary/40;
+    @apply disabled:bg-gray-100 disabled:cursor-not-allowed;
+  }
+
+  .form-label { @apply block text-sm font-medium text-gray-700 mb-1.5; }
+  .form-label.form-label--required::after {
+    content: ' *';
+    @apply text-red-600 font-semibold;
+  }
+  .form-text { @apply text-xs text-gray-500 mt-1.5; }
+  .form-group { @apply mb-4; }
+
+  .input-group { @apply relative; }
+  .input-group-icon { @apply absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none; }
+  .input-group .form-control { @apply pl-10; }
+
+  /* Professional dropdowns - text fully visible, no clipping */
+  .form-select {
+    @apply w-full rounded-lg border bg-white text-gray-900;
+    @apply px-3.5 pr-9 text-sm font-medium;
+    @apply min-h-[2.5rem] py-2 leading-normal;
+    @apply border-gray-200 shadow-sm;
+    @apply transition-all duration-150;
+    @apply focus:outline-none focus:ring-[0.5px] focus:ring-ring focus:border-slate-400;
+    @apply hover:border-primary/30 hover:bg-primary/5;
+    @apply disabled:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-70;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%231e3a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.65rem center;
+    background-size: 1rem 1rem;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .form-check { @apply flex items-center gap-2; }
+  .form-check-input {
+    @apply w-4 h-4 rounded border-gray-300 text-primary;
+    @apply focus:ring-[0.5px] focus:ring-ring focus:ring-offset-0;
+  }
+  .form-check-label { @apply text-sm text-gray-700 cursor-pointer; }
+
+  /* Validation */
+  .is-valid { @apply border-emerald-500 focus:border-emerald-500 focus:ring-[0.5px] focus:ring-emerald-500/20; }
+  .is-invalid { @apply border-red-500 focus:border-red-500 focus:ring-[0.5px] focus:ring-red-500/20; }
+  .valid-feedback { @apply text-xs text-emerald-600 mt-1; }
+  .invalid-feedback { @apply text-xs text-red-600 mt-1; }
+
+  /* Badges - Minimal Colors */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-primary { @apply bg-primary/10 text-primary; }
+  .badge-secondary { @apply bg-gray-100 text-gray-600; }
+  .badge-success { @apply bg-emerald-50 text-emerald-700; }
+  .badge-danger { @apply bg-red-50 text-red-700; }
+  .badge-warning { @apply bg-amber-50 text-amber-700; }
+
+  /* Alerts */
+  .alert {
+    @apply flex items-start gap-3 p-4 rounded-lg border;
+  }
+
+  .alert-icon { @apply flex-shrink-0 w-5 h-5; }
+  .alert-content { @apply flex-1 min-w-0; }
+  .alert-title { @apply font-semibold text-sm; }
+  .alert-description { @apply text-sm mt-0.5 opacity-90; }
+
+  .alert-primary { @apply bg-primary/10 border-primary/30 text-primary; }
+  .alert-success { @apply bg-emerald-50 border-emerald-200 text-emerald-800; }
+  .alert-danger { @apply bg-red-50 border-red-200 text-red-800; }
+  .alert-warning { @apply bg-amber-50 border-amber-200 text-amber-800; }
+
+  /* Tables */
+  .table { @apply w-full text-sm; }
+
+  .table th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-primary uppercase tracking-wider;
+    @apply bg-primary/5 border-b border-gray-200;
+  }
+
+  .table td {
+    @apply px-4 py-3.5 border-b border-gray-100 text-gray-700;
+  }
+
+  .table-hover tbody tr {
+    @apply transition-colors cursor-pointer;
+  }
+
+  .table-hover tbody tr:hover {
+    @apply bg-primary/5;
+  }
+
+  /* Navigation */
+  .nav { @apply flex flex-wrap gap-1; }
+  .nav-item { @apply relative; }
+
+  .nav-link {
+    @apply flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg;
+    @apply text-gray-600 transition-all duration-150;
+    @apply hover:text-primary hover:bg-primary/10;
+  }
+
+  .nav-link.active { @apply text-primary bg-primary/10; }
+
+  .nav-tabs { @apply border-b border-gray-200; }
+
+  .nav-tabs .nav-link {
+    @apply rounded-none border-b-2 border-transparent -mb-px;
+    @apply hover:border-primary/40 hover:bg-transparent;
+  }
+
+  .nav-tabs .nav-link.active {
+    @apply border-primary bg-transparent text-primary;
+  }
+
+  /* Progress Bar */
+  .progress { @apply h-2 bg-gray-200 rounded-full overflow-hidden; }
+  .progress-bar { @apply h-full rounded-full transition-all duration-500; }
+  .progress-bar-primary { @apply bg-primary; }
+  .progress-bar-success { @apply bg-emerald-500; }
+  .progress-bar-danger { @apply bg-red-500; }
+
+  /* List Group */
+  .list-group { @apply rounded-lg border border-gray-200 overflow-hidden; }
+
+  .list-group-item {
+    @apply flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-100 last:border-0;
+    @apply transition-colors;
+  }
+
+  .list-group-item-action { @apply cursor-pointer hover:bg-primary/5; }
+  .list-group-item.active { @apply bg-primary/5 border-l-4 border-l-primary; }
+
+  /* Dropdown */
+  .dropdown-menu {
+    @apply bg-white rounded-lg border border-gray-200 py-1;
+    box-shadow: 0 4px 12px rgba(30, 58, 138, 0.1);
+  }
+
+  .dropdown-item {
+    @apply flex items-center gap-2 px-4 py-2 text-sm text-gray-700;
+    @apply transition-colors cursor-pointer;
+    @apply hover:bg-primary/10 hover:text-primary;
+  }
+
+  .dropdown-item.active { @apply bg-primary/10 text-primary; }
+  .dropdown-divider { @apply my-1 border-t border-gray-200; }
+
+  /* Stat Cards */
+  .stat-card { @apply card p-5; }
+  .stat-card-icon { @apply w-12 h-12 rounded-xl flex items-center justify-center mb-4; }
+  .stat-card-value { @apply text-2xl font-bold text-gray-900; }
+  .stat-card-label { @apply text-sm text-gray-500 mt-1; }
+  .stat-card-change { @apply text-xs font-semibold mt-2 flex items-center gap-1; }
+  .stat-card-change.positive { @apply text-emerald-600; }
+  .stat-card-change.negative { @apply text-red-600; }
+
+  /* Icon Backgrounds - Limited Colors */
+  .icon-primary { @apply bg-primary/10 text-primary; }
+  .icon-secondary { @apply bg-gray-100 text-gray-600; }
+  .icon-success { @apply bg-emerald-50 text-emerald-600; }
+  .icon-danger { @apply bg-red-50 text-red-600; }
+
+  /* Spacing */
+  .section { @apply mb-6; }
+  .section-header { @apply mb-4; }
+  .section-title { @apply text-lg font-semibold text-gray-900; }
+  .section-description { @apply text-sm text-gray-500 mt-1; }
+
+  /* Dividers */
+  .divider { @apply border-t border-gray-200 my-4; }
+  .divider-vertical { @apply border-l border-gray-200 mx-4 h-6; }
+
+  /* Text Utilities */
+  .text-truncate { @apply truncate; }
+  .text-muted { @apply text-gray-500; }
+  .text-primary { color: #1e3a8a; }
+  .text-success { @apply text-emerald-600; }
+  .text-danger { @apply text-red-600; }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in { animation: fadeIn 0.2s ease-out; }
+.animate-fade-in-up { animation: fadeInUp 0.3s ease-out; }
+
+/* Focus States - 0.5px focus ring for accessibility */
+:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+
+/* 0.5px focus ring on select/dropdown */
+.erp-select-content:focus-visible,
+.erp-select-content:focus,
+.erp-select-content *:focus-visible,
+.erp-select-content *:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+
+/* Form controls: white background, 0.5px focus ring/border, no help text after focus */
+input, select, textarea, [role="combobox"] {
+  background-color: #ffffff !important;
+}
+input:focus, input:focus-visible, select:focus, select:focus-visible,
+textarea:focus, textarea:focus-visible,
+[role="combobox"]:focus, [role="combobox"]:focus-visible,
+button:focus, button:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+/* Input/textarea: 0.5px border + hide placeholder when focused — project-wide */
+input:focus, input:focus-visible,
+textarea:focus, textarea:focus-visible {
+  border-width: 0.5px !important;
+  border-color: hsl(var(--ring)) !important;
+}
+/* Transaction date (composite): one ring on wrapper only — no inner input/button rings (prevents “shaking”) */
+.voucher-form-controls .voucher-date-picker input:focus,
+.voucher-form-controls .voucher-date-picker input:focus-visible {
+  border-width: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.voucher-form-controls .voucher-date-picker button:focus,
+.voucher-form-controls .voucher-date-picker button:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.voucher-form-controls .voucher-date-picker:focus-within {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+input:focus::placeholder, input:focus-visible::placeholder,
+textarea:focus::placeholder, textarea:focus-visible::placeholder {
+  color: transparent !important;
+}
+/* Hide helper text below form controls */
+input + p.text-muted-foreground,
+select + p.text-muted-foreground,
+textarea + p.text-muted-foreground,
+[role="combobox"] + p.text-muted-foreground,
+div:has([role="combobox"]) + p.text-muted-foreground,
+div:has(> [role="combobox"]) + p.text-xs.text-muted-foreground {
+  display: none !important;
+}
+
+/* Voucher form: 0.5px focus ring on ALL controls (selects, inputs, buttons) */
+.voucher-form-controls button:focus,
+.voucher-form-controls button:focus-visible,
+.voucher-form-controls input:focus,
+.voucher-form-controls input:focus-visible,
+.voucher-form-controls [role="combobox"]:focus,
+.voucher-form-controls [role="combobox"]:focus-visible,
+.voucher-form-controls select:focus,
+.voucher-form-controls select:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+
+/* Date composite must stay after generic rules: inner controls never get their own ring */
+.voucher-form-controls .voucher-date-picker input:focus,
+.voucher-form-controls .voucher-date-picker input:focus-visible,
+.voucher-form-controls .voucher-date-picker button:focus,
+.voucher-form-controls .voucher-date-picker button:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.voucher-form-controls .voucher-date-picker:focus-within {
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+}
+
+/* Expense account (header): no blue focus ring on the combobox / chevron — matches flat white field */
+.voucher-form-controls .voucher-expense-account-field input:focus,
+.voucher-form-controls .voucher-expense-account-field input:focus-visible,
+.voucher-form-controls .voucher-expense-account-field [role='combobox']:focus,
+.voucher-form-controls .voucher-expense-account-field [role='combobox']:focus-visible,
+.voucher-form-controls .voucher-expense-account-field button:focus,
+.voucher-form-controls .voucher-expense-account-field button:focus-visible {
+  border-width: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.voucher-form-controls .voucher-expense-account-field:focus-within {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Voucher form: 1px border when focused, hide placeholder on focus */
+.voucher-form-controls .voucher-form-input {
+  /* Omit box-shadow from transition to avoid subtle “shimmer” when focus ring updates */
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+/* Stable header row: isolate layout so preview/query updates don’t reflow siblings */
+.voucher-form-controls .voucher-form-controls-row {
+  contain: layout style;
+  isolation: isolate;
+}
+/* Keep 1px border on focus (no width change) to avoid layout shift / “shaking” when controls re-render */
+.voucher-form-controls .voucher-form-input:focus,
+.voucher-form-controls .voucher-form-input:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 0.5px hsl(var(--ring)) !important;
+  border-width: 1px !important;
+  border-color: hsl(215 20% 45%) !important;
+  background-color: #ffffff !important;
+}
+.dark .voucher-form-controls .voucher-form-input:focus,
+.dark .voucher-form-controls .voucher-form-input:focus-visible {
+  border-color: hsl(215 20% 55%) !important;
+  background-color: hsl(var(--background)) !important;
+}
+.voucher-form-controls .voucher-form-input:focus::placeholder,
+.voucher-form-controls .voucher-form-input:focus-visible::placeholder {
+  color: transparent !important;
+}
+.dark .voucher-form-controls .voucher-form-input:focus,
+.dark .voucher-form-controls .voucher-form-input:focus-visible {
+  border-color: hsl(215 20% 55%) !important;
+}
+/* Remove browser blue circle / clear button inside inputs */
+.voucher-form-controls input::-ms-clear,
+.voucher-form-controls input::-ms-reveal,
+.voucher-form-controls input::-webkit-search-cancel-button,
+.voucher-form-controls input::-webkit-search-decoration {
+  display: none !important;
+  appearance: none !important;
+}
+
+/* Selection */
+::selection {
+  @apply bg-primary/20 text-primary;
+}
+
+/* Checkerboard pattern for transparent images */
+.checkerboard {
+  background-image: 
+    linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+    linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-color: #ffffff;
+}
+
+.checkerboard-sm {
+  background-image: 
+    linear-gradient(45deg, #e5e5e5 25%, transparent 25%),
+    linear-gradient(-45deg, #e5e5e5 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e5e5 75%),
+    linear-gradient(-45deg, transparent 75%, #e5e5e5 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+  background-color: #ffffff;
+}
+
+/* Logo container with perfect centering */
+.logo-container {
+  @apply flex items-center justify-center;
+}
+
+.logo-container img {
+  @apply max-w-full max-h-full object-contain;
+}
+
+/* Print Styles */
+@media print {
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+
+  body {
+    @apply bg-white text-black;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  /* Hide navigation elements */
+  aside, nav, header, footer, .sidebar, .header {
+    display: none !important;
+  }
+  
+  /* Main content full width */
+  main, .main-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  
+  /* Report header with logo */
+  .print-header {
+    display: flex !important;
+    page-break-after: avoid;
+  }
+  
+  .print-header img {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+  /* Tables */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: auto;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+  }
+  
+  th {
+    background: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Page breaks */
+  .page-break {
+    page-break-before: always;
+  }
+  
+  .no-break {
+    page-break-inside: avoid;
+  }
+  
+  /* Links */
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  /* Cards */
+  .card {
+    border: 1px solid #ddd;
+    box-shadow: none !important;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Budget spreadsheet editor: layout and cell interaction; Univer sheet bar at bottom */
+:root {
+  --univer-sheet-min-height: 190vh;
+}
+
+.univer-spreadsheet-embed {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--univer-sheet-min-height);
+  min-width: 200px;
+  background: var(--background, #fff);
+  pointer-events: auto;
+  user-select: text;
+  overflow: visible;
+}
+.univer-spreadsheet-embed > * {
+  flex: 1 1 0;
+  min-height: 0;
+  min-width: 200px;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.univer-editor-frame {
+  isolation: isolate;
+  min-height: var(--univer-sheet-min-height);
+  overflow: visible;
+}
+
+/* Wrapper for pages that host the Univer spreadsheet (Edit/Add format) */
+.univer-sheet-wrapper {
+  min-height: var(--univer-sheet-min-height);
+}
+
+/* Ensure Univer sheet bar (footer) is visible and not collapsed */
+.univer-spreadsheet-embed [data-id="footer"],
+.univer-spreadsheet-embed [data-part="footer"],
+.univer-spreadsheet-embed .univer-sheets-footer {
+  flex-shrink: 0;
+  min-height: 32px;
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* Toolbar & menu dropdowns above dialog (Univer uses inline z-index; !important overrides it) */
+.univer-spreadsheet-embed .univer-z-10,
+.univer-spreadsheet-embed .univer-z-\[100\],
+.univer-spreadsheet-embed .univer-z-\[1020\],
+.univer-spreadsheet-embed [class*='univer-z-'] {
+  z-index: 2147483646 !important;
+}
+/* Global: Univer dropdowns/menus portaled to body must appear above dialog (z-50) */
+body .univer-z-10,
+body .univer-z-\[100\],
+body .univer-z-\[1020\],
+body [class*='univer-z-'] {
+  z-index: 2147483646 !important;
+}
+/* Keep Univer negative z-index elements behind */
+body .univer-z-\[-1\] {
+  z-index: -1 !important;
+}
+
+/* When disabled, block interaction */
+.univer-spreadsheet-embed[data-readonly] {
+  pointer-events: none !important;
+  user-select: none;
+  opacity: 0.88;
+}
+.univer-spreadsheet-embed[data-readonly] * {
+  pointer-events: none !important;
+}
+
+/* Voucher lines table — reference design: zebra, vertical grid only, hover = white + border */
+.voucher-sheet-grid {
+  --voucher-grid-line: #d1d1d1;
+  /* Minimal scrollbar: thin track, medium grey thumb, rounded */
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: #9ca3af #e5e7eb;
+}
+.dark .voucher-sheet-grid {
+  --voucher-grid-line: hsl(var(--border) / 0.6);
+  scrollbar-color: hsl(var(--border)) hsl(var(--muted) / 0.5);
+}
+.voucher-sheet-grid::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.voucher-sheet-grid::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 0;
+}
+.dark .voucher-sheet-grid::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.3);
+}
+.voucher-sheet-grid::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 4px;
+}
+.voucher-sheet-grid::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+.dark .voucher-sheet-grid::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+}
+.dark .voucher-sheet-grid::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground) / 0.4);
+}
+.voucher-sheet-grid::-webkit-scrollbar-corner {
+  background: #e5e7eb;
+}
+.dark .voucher-sheet-grid::-webkit-scrollbar-corner {
+  background: hsl(var(--muted) / 0.3);
+}
+
+/* Account picker popover — same scrollbar feel as voucher sheet */
+.voucher-account-picker-scroll {
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scrollbar-color: #9ca3af #e5e7eb;
+}
+.dark .voucher-account-picker-scroll {
+  scrollbar-color: hsl(var(--border)) hsl(var(--muted) / 0.5);
+}
+.voucher-account-picker-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.voucher-account-picker-scroll::-webkit-scrollbar-track {
+  background: #e5e7eb;
+  border-radius: 0;
+}
+.dark .voucher-account-picker-scroll::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.3);
+}
+.voucher-account-picker-scroll::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 4px;
+}
+.voucher-account-picker-scroll::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+.dark .voucher-account-picker-scroll::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+}
+.dark .voucher-account-picker-scroll::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--foreground) / 0.4);
+}
+
+/* Account picker: flat search field — no global input:focus inner border / ring */
+.voucher-account-picker-search .voucher-account-picker-search-input,
+.voucher-account-picker-search .voucher-account-picker-search-input:focus,
+.voucher-account-picker-search .voucher-account-picker-search-input:focus-visible {
+  border-width: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-color: transparent !important;
+}
+
+/* Account statement: plain search box — no blue focus ring / border (globals apply ring to inputs & combobox) */
+.account-statement-account-search input,
+.account-statement-account-search input:focus,
+.account-statement-account-search input:focus-visible,
+.account-statement-account-search [role="combobox"],
+.account-statement-account-search [role="combobox"]:focus,
+.account-statement-account-search [role="combobox"]:focus-visible {
+  border-width: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background-color: transparent !important;
+}
+.account-statement-account-search button:focus,
+.account-statement-account-search button:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+}
+/* Keep placeholder visible while focused (project default hides it on input:focus) */
+.account-statement-account-search input:focus::placeholder,
+.account-statement-account-search input:focus-visible::placeholder {
+  color: hsl(var(--muted-foreground) / 0.75) !important;
+}
+
+.voucher-sheet-grid table.voucher-lines-table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+/* 0.3px border on all cells — visible grey so grid lines show clearly */
+.voucher-sheet-grid table.voucher-lines-table th,
+.voucher-sheet-grid table.voucher-lines-table td {
+  border: 0.3px solid #94a3b8;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table th,
+.dark .voucher-sheet-grid table.voucher-lines-table td {
+  border-color: hsl(var(--border));
+}
+/* New voucher allocation table — header row: brand blue, light grid on header */
+.voucher-sheet-grid table.voucher-lines-table thead {
+  background-color: #1e3a8a;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table thead {
+  background-color: rgb(30 58 138);
+}
+/* Header: no vertical borders between columns (solid blue bar); keep top/bottom edge */
+.voucher-sheet-grid table.voucher-lines-table thead th {
+  background-color: #1e3a8a !important;
+  color: #ffffff !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 0.3px solid rgba(255, 255, 255, 0.22) !important;
+  border-bottom: 0.3px solid rgba(255, 255, 255, 0.22) !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table thead th {
+  background-color: rgb(30 58 138) !important;
+  color: #f8fafc !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 0.3px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: 0.3px solid rgba(255, 255, 255, 0.2) !important;
+}
+/* Outer edges only — aligns header with body grid; no lines between header columns */
+.voucher-sheet-grid table.voucher-lines-table thead th:first-child {
+  border-left: 0.3px solid rgba(255, 255, 255, 0.22) !important;
+}
+.voucher-sheet-grid table.voucher-lines-table thead th:last-child {
+  border-right: 0.3px solid rgba(255, 255, 255, 0.22) !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table thead th:first-child {
+  border-left: 0.3px solid rgba(255, 255, 255, 0.2) !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table thead th:last-child {
+  border-right: 0.3px solid rgba(255, 255, 255, 0.2) !important;
+}
+.voucher-sheet-grid table.voucher-lines-table tbody tr {
+  transition: background-color 0.08s ease;
+}
+/* Voucher table only: one row white, next row light blue (zebra) — visible blue, not washed out */
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td {
+  background-color: #ffffff !important;
+}
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even),
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td {
+  background-color: #E8F0FE !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td {
+  background-color: hsl(var(--background) / 0.95) !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even),
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td {
+  background-color: hsl(220 35% 22% / 0.7) !important;
+}
+
+/* Foreign transaction: EXR + FOREIGN columns — grouped header + slightly tinted body cells */
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table thead th:nth-child(6) {
+  border-left: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background-color: rgb(23 37 84 / 0.55) !important;
+}
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table thead th:nth-child(7) {
+  background-color: rgb(23 37 84 / 0.35) !important;
+}
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table thead th:nth-child(6) {
+  border-left: 1px solid rgba(255, 255, 255, 0.22) !important;
+  background-color: rgb(30 58 138 / 0.65) !important;
+}
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table thead th:nth-child(7) {
+  background-color: rgb(30 58 138 / 0.4) !important;
+}
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(odd) td:nth-child(6),
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(odd) td:nth-child(7) {
+  background-color: rgb(239 246 255) !important;
+}
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(even) td:nth-child(6),
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(even) td:nth-child(7) {
+  background-color: rgb(219 234 254) !important;
+}
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr td:nth-child(6) {
+  border-left: 1.5px solid rgba(30, 58, 138, 0.2) !important;
+}
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(odd) td:nth-child(6),
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(odd) td:nth-child(7) {
+  background-color: hsl(220 45% 18% / 0.92) !important;
+}
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(even) td:nth-child(6),
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:nth-child(even) td:nth-child(7) {
+  background-color: hsl(220 38% 24% / 0.88) !important;
+}
+.dark .voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr td:nth-child(6) {
+  border-left-color: rgba(147, 197, 253, 0.35) !important;
+}
+
+/* So light blue row shows: inputs and dropdown triggers in even rows stay transparent */
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td input,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) .voucher-account-trigger,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td button {
+  background-color: transparent !important;
+}
+/* Hover only: thin ring; column grid stays. z-index so outline paints above adjacent rows (fixes missing ring on account column / blue rows). */
+.voucher-sheet-grid table.voucher-lines-table tbody tr:hover {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 0.3px rgb(15 23 42);
+}
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr:hover {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 0 0.3px hsl(0 0% 92%);
+}
+/* Don’t tint account/cost combobox on hover — keeps row ring fully visible on zebra rows */
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-account-cell .voucher-account-trigger:hover,
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-cost-cell .voucher-account-trigger:hover {
+  background-color: transparent !important;
+}
+/* Focused row (editing or portaled account/cost picker): full box on all four sides; no vertical borders between cells */
+.voucher-sheet-grid table.voucher-lines-table tbody tr:has(td:focus-within),
+.voucher-sheet-grid table.voucher-lines-table tbody tr.voucher-sheet-row-active {
+  box-shadow: 0 0 0 1px rgb(71 85 105);
+  position: relative;
+  z-index: 1;
+}
+.voucher-sheet-grid table.voucher-lines-table tbody tr:has(td:focus-within) td,
+.voucher-sheet-grid table.voucher-lines-table tbody tr.voucher-sheet-row-active td {
+  border-left: none !important;
+  border-right: none !important;
+}
+/* Foreign mode: restore FX column divider after row-focus reset above */
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr:has(td:focus-within) td:nth-child(6),
+.voucher-sheet-grid.voucher-sheet-foreign-mode table.voucher-lines-table tbody tr.voucher-sheet-row-active td:nth-child(6) {
+  border-left: 1.5px solid rgba(30, 58, 138, 0.35) !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr:has(td:focus-within),
+.dark .voucher-sheet-grid table.voucher-lines-table tbody tr.voucher-sheet-row-active {
+  box-shadow: 0 0 0 1px rgb(148 163 184);
+}
+/* Row-level focus chrome: no second ring on each cell (caret + row frame only, like the reference) */
+.voucher-sheet-grid table.voucher-lines-table td input:focus,
+.voucher-sheet-grid table.voucher-lines-table td input:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+  border-width: 0 !important;
+  cursor: text;
+}
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-account-cell button:focus,
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-account-cell button:focus-visible,
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-cost-cell button:focus,
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-cost-cell button:focus-visible {
+  box-shadow: none !important;
+  outline: none !important;
+  border-width: 0 !important;
+}
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-account-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table .voucher-sheet-cost-cell .voucher-account-trigger svg {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.voucher-sheet-grid table.voucher-lines-table tbody tr:hover .voucher-sheet-account-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:has(td:focus-within) .voucher-sheet-account-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table tbody tr.voucher-sheet-row-active .voucher-sheet-account-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:hover .voucher-sheet-cost-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:has(td:focus-within) .voucher-sheet-cost-cell .voucher-account-trigger svg,
+.voucher-sheet-grid table.voucher-lines-table tbody tr.voucher-sheet-row-active .voucher-sheet-cost-cell .voucher-account-trigger svg {
+  opacity: 0.5;
+  pointer-events: auto;
+}
+/* Keep row color on autofill/autocomplete — prevent browser’s light blue on “already typed” text */
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td input:-webkit-autofill,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td input:-webkit-autofill:hover,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td input:-webkit-autofill:focus,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(odd) td input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+}
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td input:-webkit-autofill,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td input:-webkit-autofill:hover,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td input:-webkit-autofill:focus,
+.voucher-sheet-grid table.voucher-lines-table tbody tr:nth-child(even) td input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #E8F0FE inset !important;
+  box-shadow: 0 0 0 1000px #E8F0FE inset !important;
+}
+.dark .voucher-sheet-grid table.voucher-lines-table td input:-webkit-autofill,
+.dark .voucher-sheet-grid table.voucher-lines-table td input:-webkit-autofill:hover,
+.dark .voucher-sheet-grid table.voucher-lines-table td input:-webkit-autofill:focus,
+.dark .voucher-sheet-grid table.voucher-lines-table td input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px hsl(var(--background)) inset !important;
+  box-shadow: 0 0 0 1000px hsl(var(--background)) inset !important;
+}
+
+/* Chart of accounts + GL journal + Currency + Treasury cash — shared ledger chrome */
+@layer components {
+  [data-chart-of-accounts-module] .coa-ledger-thead,
+  [data-gl-journal-module] .coa-ledger-thead,
+  [data-currency-module] .coa-ledger-thead,
+  [data-treasury-cash-module] .coa-ledger-thead {
+    @apply bg-primary text-primary-foreground border-b border-primary/25 shadow-sm;
+  }
+  [data-chart-of-accounts-module] thead.coa-ledger-thead th,
+  [data-gl-journal-module] thead.coa-ledger-thead th,
+  [data-currency-module] thead.coa-ledger-thead th,
+  [data-treasury-cash-module] thead.coa-ledger-thead th {
+    @apply bg-transparent font-semibold text-primary-foreground;
+  }
+  [data-chart-of-accounts-module] thead.coa-ledger-thead tr,
+  [data-gl-journal-module] thead.coa-ledger-thead tr,
+  [data-currency-module] thead.coa-ledger-thead tr,
+  [data-treasury-cash-module] thead.coa-ledger-thead tr {
+    @apply border-primary/25;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-thead,
+  .dark [data-gl-journal-module] .coa-ledger-thead,
+  .dark [data-currency-module] .coa-ledger-thead,
+  .dark [data-treasury-cash-module] .coa-ledger-thead {
+    @apply bg-slate-900 text-slate-50 border-b border-slate-700/80 shadow-none;
+  }
+  .dark [data-chart-of-accounts-module] thead.coa-ledger-thead th,
+  .dark [data-gl-journal-module] thead.coa-ledger-thead th,
+  .dark [data-currency-module] thead.coa-ledger-thead th,
+  .dark [data-treasury-cash-module] thead.coa-ledger-thead th {
+    @apply text-slate-50;
+  }
+  .dark [data-chart-of-accounts-module] thead.coa-ledger-thead tr,
+  .dark [data-gl-journal-module] thead.coa-ledger-thead tr,
+  .dark [data-currency-module] thead.coa-ledger-thead tr,
+  .dark [data-treasury-cash-module] thead.coa-ledger-thead tr {
+    @apply border-white/10;
+  }
+  [data-chart-of-accounts-module] .coa-ledger-card,
+  [data-gl-journal-module] .coa-ledger-card,
+  [data-currency-module] .coa-ledger-card,
+  [data-treasury-cash-module] .coa-ledger-card {
+    @apply rounded-none border border-border bg-white shadow-card dark:bg-card dark:shadow-none;
+  }
+  [data-chart-of-accounts-module] .coa-toolbar,
+  [data-gl-journal-module] .coa-toolbar,
+  [data-currency-module] .coa-toolbar,
+  [data-treasury-cash-module] .coa-toolbar {
+    @apply border-b border-border/80 bg-muted/30;
+  }
+
+  /* Shared data grid frame */
+  [data-chart-of-accounts-module] .coa-ledger-table-frame,
+  [data-gl-journal-module] .coa-ledger-table-frame,
+  [data-currency-module] .coa-ledger-table-frame,
+  [data-treasury-cash-module] .coa-ledger-table-frame {
+    @apply border border-border/90 bg-white;
+    box-shadow:
+      0 1px 2px rgb(15 23 42 / 0.05),
+      0 2px 8px rgb(15 23 42 / 0.04),
+      inset 0 1px 0 0 hsl(var(--border) / 0.55);
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-frame,
+  .dark [data-gl-journal-module] .coa-ledger-table-frame,
+  .dark [data-currency-module] .coa-ledger-table-frame,
+  .dark [data-treasury-cash-module] .coa-ledger-table-frame {
+    @apply border-border/70 bg-muted/15;
+    box-shadow:
+      0 1px 2px rgb(0 0 0 / 0.35),
+      inset 0 1px 0 0 hsl(var(--border) / 0.35);
+  }
+  [data-chart-of-accounts-module] .coa-ledger-table-frame .coa-ledger-thead,
+  [data-gl-journal-module] .coa-ledger-table-frame .coa-ledger-thead,
+  [data-currency-module] .coa-ledger-table-frame .coa-ledger-thead,
+  [data-treasury-cash-module] .coa-ledger-table-frame .coa-ledger-thead {
+    @apply border-b-2 border-primary/35 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.12)];
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-frame .coa-ledger-thead,
+  .dark [data-gl-journal-module] .coa-ledger-table-frame .coa-ledger-thead,
+  .dark [data-currency-module] .coa-ledger-table-frame .coa-ledger-thead,
+  .dark [data-treasury-cash-module] .coa-ledger-table-frame .coa-ledger-thead {
+    @apply border-b-2 border-primary/45 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.45)];
+  }
+  /* Flex / tree rows */
+  [data-chart-of-accounts-module] .coa-ledger-table-row,
+  [data-gl-journal-module] .coa-ledger-table-row,
+  [data-currency-module] .coa-ledger-table-row,
+  [data-treasury-cash-module] .coa-ledger-table-row {
+    @apply border-b border-border/70 bg-white transition-colors;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-row,
+  .dark [data-gl-journal-module] .coa-ledger-table-row,
+  .dark [data-currency-module] .coa-ledger-table-row,
+  .dark [data-treasury-cash-module] .coa-ledger-table-row {
+    @apply border-border/60 bg-card;
+  }
+  [data-chart-of-accounts-module] .coa-ledger-table-row:hover,
+  [data-gl-journal-module] .coa-ledger-table-row:hover,
+  [data-currency-module] .coa-ledger-table-row:hover,
+  [data-treasury-cash-module] .coa-ledger-table-row:hover {
+    @apply bg-muted/55;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-row:hover,
+  .dark [data-gl-journal-module] .coa-ledger-table-row:hover,
+  .dark [data-currency-module] .coa-ledger-table-row:hover,
+  .dark [data-treasury-cash-module] .coa-ledger-table-row:hover {
+    @apply bg-muted/35;
+  }
+  [data-chart-of-accounts-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  [data-gl-journal-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  [data-currency-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  [data-treasury-cash-module] .coa-ledger-table-row.coa-ledger-table-row--child {
+    @apply border-l border-l-border/55;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  .dark [data-gl-journal-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  .dark [data-currency-module] .coa-ledger-table-row.coa-ledger-table-row--child,
+  .dark [data-treasury-cash-module] .coa-ledger-table-row.coa-ledger-table-row--child {
+    @apply border-l-border/45;
+  }
+  /* HTML table body rows inside frame */
+  [data-chart-of-accounts-module] .coa-ledger-table-frame table tbody tr,
+  [data-gl-journal-module] .coa-ledger-table-frame table tbody tr,
+  [data-currency-module] .coa-ledger-table-frame table tbody tr,
+  [data-treasury-cash-module] .coa-ledger-table-frame table tbody tr {
+    @apply border-b border-border/70 bg-white transition-colors;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-frame table tbody tr,
+  .dark [data-gl-journal-module] .coa-ledger-table-frame table tbody tr,
+  .dark [data-currency-module] .coa-ledger-table-frame table tbody tr,
+  .dark [data-treasury-cash-module] .coa-ledger-table-frame table tbody tr {
+    @apply border-border/60 bg-card;
+  }
+  [data-chart-of-accounts-module] .coa-ledger-table-frame table tbody tr:hover,
+  [data-gl-journal-module] .coa-ledger-table-frame table tbody tr:hover,
+  [data-currency-module] .coa-ledger-table-frame table tbody tr:hover,
+  [data-treasury-cash-module] .coa-ledger-table-frame table tbody tr:hover {
+    @apply bg-muted/55;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-frame table tbody tr:hover,
+  .dark [data-gl-journal-module] .coa-ledger-table-frame table tbody tr:hover,
+  .dark [data-currency-module] .coa-ledger-table-frame table tbody tr:hover,
+  .dark [data-treasury-cash-module] .coa-ledger-table-frame table tbody tr:hover {
+    @apply bg-muted/35;
+  }
+  [data-chart-of-accounts-module] .coa-ledger-table-frame table tfoot tr,
+  [data-gl-journal-module] .coa-ledger-table-frame table tfoot tr,
+  [data-currency-module] .coa-ledger-table-frame table tfoot tr,
+  [data-treasury-cash-module] .coa-ledger-table-frame table tfoot tr {
+    @apply border-t border-border/80 bg-muted/50;
+  }
+  .dark [data-chart-of-accounts-module] .coa-ledger-table-frame table tfoot tr,
+  .dark [data-gl-journal-module] .coa-ledger-table-frame table tfoot tr,
+  .dark [data-currency-module] .coa-ledger-table-frame table tfoot tr,
+  .dark [data-treasury-cash-module] .coa-ledger-table-frame table tfoot tr {
+    @apply border-border/60 bg-muted/55;
+  }
+}
+
+/* Header notification slide panel — thin scrollbar (white panel) */
+.notification-panel-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.45) transparent;
+}
+.notification-panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.notification-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.notification-panel-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.55);
+  border-radius: 0;
+}
+.notification-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.65);
+}

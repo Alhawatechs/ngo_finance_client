@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="45%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
+  <!-- Speech bubble: head circle + tail (transparent fill) -->
+  <g stroke="url(#grad)" stroke-width="1.5" fill="none">
+    <circle cx="24" cy="22.08" r="15.36"/>
+    <path d="M20.16 35.52 L24 41.28 L27.84 35.52 Z"/>
+  </g>
+  <!-- Eyes -->
+  <circle cx="18.24" cy="23.04" r="2.88" fill="url(#grad)"/>
+  <circle cx="29.76" cy="23.04" r="2.88" fill="url(#grad)"/>
+  <!-- Headphones -->
+  <path d="M6.624 18.048 A6.72 6.72 0 0 1 6.624 26.112" stroke="url(#grad)" stroke-width="1.5" fill="none"/>
+  <path d="M41.376 18.048 A6.72 6.72 0 0 0 41.376 26.112" stroke="url(#grad)" stroke-width="1.5" fill="none"/>
+  <!-- Status dot -->
+  <circle cx="33.984" cy="29.76" r="1.92" fill="#10b981" stroke="url(#grad)" stroke-width="1.2"/>
+</svg>
