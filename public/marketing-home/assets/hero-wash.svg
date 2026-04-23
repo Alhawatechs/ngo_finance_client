@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 616" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+  <defs>
+    <!-- Project green (#14532d) family — no mint / neon accents -->
+    <linearGradient id="hero-wash-arc" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c5d4cb"/>
+      <stop offset="38%" stop-color="#22a366"/>
+      <stop offset="72%" stop-color="#1e5a36"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="hero-wash-panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#dce6df"/>
+      <stop offset="42%" stop-color="#22a366"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <!-- Dynamics-style cluster: large arc + rounded panel + white overlay (transparent elsewhere) -->
+  <circle cx="1580" cy="20" r="360" fill="url(#hero-wash-arc)" opacity="0.78"/>
+  <rect x="1000" y="292" width="600" height="324" rx="52" fill="url(#hero-wash-panel)" opacity="0.82"/>
+  <path
+    fill="#ffffff"
+    d="M 1168 196h352c28 0 52 24 52 52v208c0 16-12 28-28 28h-376V196z"
+    opacity="0.92"
+  />
+</svg>

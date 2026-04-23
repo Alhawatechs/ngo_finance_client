@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 48" fill="none" role="img" aria-labelledby="ngoWordTitle">
+  <title id="ngoWordTitle">NGOBook</title>
+  <defs>
+    <linearGradient id="ngoWordBg" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#022f2d"/>
+      <stop offset="0.45" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+    <linearGradient id="ngoWordSheen" x1="14" y1="10" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0, 2)">
+    <rect x="4" y="2" width="40" height="40" rx="12" fill="url(#ngoWordBg)"/>
+    <rect x="4" y="2" width="40" height="40" rx="12" fill="url(#ngoWordSheen)"/>
+    <path d="M24 14v21" stroke="#99f6e4" stroke-width="2.2" stroke-linecap="round" opacity="0.95"/>
+    <rect x="12.5" y="14" width="10.5" height="20" rx="2.5" fill="rgba(236,253,245,0.16)" stroke="#ecfdf5" stroke-width="1.35"/>
+    <rect x="25" y="14" width="10.5" height="20" rx="2.5" fill="rgba(236,253,245,0.09)" stroke="#ecfdf5" stroke-width="1.35"/>
+    <path d="M14.5 18.5h6.5M14.5 22.5h5.5M14.5 26.5h6.5M14.5 30.5h4.5" stroke="#ecfdf5" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+    <path d="M27 18.5h6.5M27 22.5h5.8M27 26.5h6.5M27 30.5h5" stroke="#ecfdf5" stroke-width="1.2" stroke-linecap="round" opacity="0.68"/>
+    <circle cx="33.25" cy="14.75" r="2.4" fill="#5eead4"/>
+    <circle cx="33.25" cy="14.75" r="2.4" stroke="#022f2d" stroke-opacity="0.2" stroke-width="0.7" fill="none"/>
+  </g>
+  <text
+    x="54"
+    y="33"
+    fill="#0c1222"
+    font-family="Plus Jakarta Sans, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+    font-size="25"
+    letter-spacing="-0.038em"
+  >
+    <tspan font-weight="800">NGO</tspan><tspan font-weight="600">Book</tspan>
+  </text>
+</svg>

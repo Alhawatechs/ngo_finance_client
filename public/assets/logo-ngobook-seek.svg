@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =============================================================
+  NGOBook  "seek-style"  PRIMARY LOGO  (master, vector-ready)
+  =============================================================
+  Editable vector SVG. Safe to open in:
+    Adobe Illustrator  (File > Open)
+    Affinity Designer
+    Figma / Sketch / Inkscape
+
+  To ship a hand-off .ai / .eps / .pdf:
+    1.  Open this file in Illustrator.
+    2.  Select the wordmark/subtag text > Type > Create Outlines.
+    3.  File > Save As > Adobe Illustrator (.ai)
+                          / Encapsulated PostScript (.eps)
+                          / PDF (with "Preserve Illustrator editing").
+
+  Brand Palette
+    Teal        #17A092   (primary accent)
+    Charcoal    #222222   (wordmark + deep block)
+    Warm gray   #B6B3AD   (supporting block)
+    White       #FFFFFF   (background / knock-outs)
+
+  Typography
+    Wordmark :  heavy rounded geometric sans, lowercase
+                preferred: Gotham Rounded Black / Avenir Next
+                Rounded Heavy / Circular Black.
+                fallback stack is embedded below.
+    Subtag   :  same family, Medium, +80 tracking.
+
+  Clear-space rule
+    Reserve 1x  (= the teal dot diameter) of empty space
+    on all four sides of the lockup.
+
+  Minimum size
+    Primary lockup      24 mm / 96 px wide
+    Mark only (badge)   12 mm / 48 px wide
+  =============================================================
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1400 560"
+     width="1400"
+     height="560"
+     role="img"
+     aria-labelledby="ngobook-title ngobook-desc">
+  <title id="ngobook-title">NGOBook Finance</title>
+  <desc id="ngobook-desc">NGOBook lowercase wordmark layered over a stack of warm-gray, charcoal and teal blocks with three teal dots at the top right and the word finance set small beneath the tail of the wordmark.</desc>
+
+  <defs>
+    <style><![CDATA[
+      .ngob-wm {
+        font-family: "Gotham Rounded", "Avenir Next Rounded", "Plus Jakarta Sans",
+                     "Circular", "Nunito", "Inter", "Helvetica Neue", Arial, sans-serif;
+        font-weight: 900;
+        font-size: 232px;
+        letter-spacing: -6px;
+      }
+      .ngob-tag {
+        font-family: "Gotham Rounded", "Avenir Next Rounded", "Plus Jakarta Sans",
+                     "Circular", "Nunito", "Inter", "Helvetica Neue", Arial, sans-serif;
+        font-weight: 500;
+        font-size: 58px;
+        letter-spacing: 4px;
+      }
+    ]]></style>
+  </defs>
+
+  <!-- ========== BADGE (blocks + dots) ========== -->
+  <g id="ngob-badge">
+
+    <!-- 1. Warm gray block : leftmost, thin, mid-height -->
+    <rect id="ngob-block-gray"
+          x="70"  y="170"
+          width="58" height="280"
+          fill="#B6B3AD"/>
+
+    <!-- 2. Charcoal block : painted BEFORE teal so it peeks out
+            on the right and bottom edges of the teal block. -->
+    <rect id="ngob-block-charcoal"
+          x="232" y="152"
+          width="152" height="338"
+          fill="#222222"/>
+
+    <!-- 3. Teal block : dominant central mass -->
+    <rect id="ngob-block-teal"
+          x="148" y="98"
+          width="190" height="352"
+          fill="#17A092"/>
+
+    <!-- 4. Three teal dots : top-right of the stack -->
+    <g id="ngob-dots" fill="#17A092">
+      <circle cx="362" cy="132" r="11"/>
+      <circle cx="394" cy="132" r="11"/>
+      <circle cx="426" cy="132" r="11"/>
+    </g>
+  </g>
+
+  <!-- ========== WORDMARK  (sits in front of blocks) ========== -->
+  <!--
+    Colour split :  ngo  = charcoal
+                    b    = teal  (brand accent)
+                    ook  = charcoal
+    Convert to outlines on final export.
+  -->
+  <g id="ngob-wordmark">
+    <text class="ngob-wm" x="168" y="430" fill="#222222"
+          >ngo<tspan fill="#17A092">b</tspan>ook</text>
+  </g>
+
+  <!-- ========== SUBTAG  (right-aligned under the k) ========== -->
+  <g id="ngob-subtag">
+    <text class="ngob-tag" x="1268" y="498" text-anchor="end" fill="#222222"
+          >finance</text>
+  </g>
+</svg>

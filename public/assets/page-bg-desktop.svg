@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 616" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
+  <defs>
+    <linearGradient id="page-bg-arc" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="45%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="page-bg-panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d1fae5"/>
+      <stop offset="55%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="616" fill="#f0ebe3"/>
+  <circle cx="1580" cy="20" r="360" fill="url(#page-bg-arc)"/>
+  <rect x="1000" y="292" width="600" height="324" rx="52" fill="url(#page-bg-panel)"/>
+  <path
+    fill="#ffffff"
+    d="M 1168 196h352c28 0 52 24 52 52v208c0 16-12 28-28 28h-376V196z"
+    opacity="0.98"
+  />
+</svg>
