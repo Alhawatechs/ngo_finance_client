@@ -22,9 +22,14 @@ export type LegalContent = {
   relatedLabel: string
   relatedSiblingText: string
   relatedSiblingHref: string
+  relatedBookCallText: string
+  relatedOverviewText: string
 }
 
-export const privacyContent: LegalContent = {
+type LegalKind = 'privacy' | 'terms'
+type LegalLocale = 'en' | 'fa-AF' | 'ps'
+
+const privacyContentEn: LegalContent = {
   eyebrow: 'Legal · Privacy',
   title: 'Privacy notice',
   leadHtml:
@@ -85,9 +90,11 @@ export const privacyContent: LegalContent = {
   relatedLabel: 'Related',
   relatedSiblingText: 'Terms of use',
   relatedSiblingHref: '/terms-conditions',
+  relatedBookCallText: 'Book a call',
+  relatedOverviewText: 'Overview',
 }
 
-export const termsContent: LegalContent = {
+const termsContentEn: LegalContent = {
   eyebrow: 'Legal · Terms',
   title: 'Terms of use',
   leadHtml:
@@ -148,4 +155,80 @@ export const termsContent: LegalContent = {
   relatedLabel: 'Related',
   relatedSiblingText: 'Privacy notice',
   relatedSiblingHref: '/privacy-policy',
+  relatedBookCallText: 'Book a call',
+  relatedOverviewText: 'Overview',
+}
+
+const privacyContentFa: LegalContent = {
+  ...privacyContentEn,
+  eyebrow: 'قانونی · محرمیت',
+  title: 'اطلاعیه محرمیت',
+  readTime: 'حدود 4 دقیقه مطالعه',
+  glanceTitle: 'در یک نگاه',
+  tocTitle: 'در این صفحه',
+  contactCardTitle: 'سوالی در مورد این اطلاعیه دارید؟',
+  ctaBookCall: 'رزرو تماس',
+  ctaEmail: 'ایمیل به فروش',
+  relatedLabel: 'مرتبط',
+  relatedSiblingText: 'شرایط استفاده',
+  relatedBookCallText: 'رزرو تماس',
+  relatedOverviewText: 'نمای کلی',
+}
+
+const termsContentFa: LegalContent = {
+  ...termsContentEn,
+  eyebrow: 'قانونی · شرایط',
+  title: 'شرایط استفاده',
+  readTime: 'حدود 3 دقیقه مطالعه',
+  glanceTitle: 'در یک نگاه',
+  tocTitle: 'در این صفحه',
+  contactCardTitle: 'سوالی در مورد این شرایط دارید؟',
+  ctaBookCall: 'رزرو تماس',
+  ctaEmail: 'ایمیل به فروش',
+  relatedLabel: 'مرتبط',
+  relatedSiblingText: 'اطلاعیه محرمیت',
+  relatedBookCallText: 'رزرو تماس',
+  relatedOverviewText: 'نمای کلی',
+}
+
+const privacyContentPs: LegalContent = {
+  ...privacyContentEn,
+  eyebrow: 'قانوني · محرمیت',
+  title: 'د محرمیت خبرتیا',
+  readTime: 'شاوخوا 4 دقیقې لوستل',
+  glanceTitle: 'په لنډه توګه',
+  tocTitle: 'په دې پاڼه کې',
+  contactCardTitle: 'د دې خبرتیا په اړه پوښتنه لرئ؟',
+  ctaBookCall: 'د اړیکې وخت واخلئ',
+  ctaEmail: 'خرڅلاو ته ایمیل',
+  relatedLabel: 'اړوند',
+  relatedSiblingText: 'د کارولو شرایط',
+  relatedBookCallText: 'د اړیکې وخت واخلئ',
+  relatedOverviewText: 'عمومي کتنه',
+}
+
+const termsContentPs: LegalContent = {
+  ...termsContentEn,
+  eyebrow: 'قانوني · شرایط',
+  title: 'د کارولو شرایط',
+  readTime: 'شاوخوا 3 دقیقې لوستل',
+  glanceTitle: 'په لنډه توګه',
+  tocTitle: 'په دې پاڼه کې',
+  contactCardTitle: 'د دې شرایطو په اړه پوښتنه لرئ؟',
+  ctaBookCall: 'د اړیکې وخت واخلئ',
+  ctaEmail: 'خرڅلاو ته ایمیل',
+  relatedLabel: 'اړوند',
+  relatedSiblingText: 'د محرمیت خبرتیا',
+  relatedBookCallText: 'د اړیکې وخت واخلئ',
+  relatedOverviewText: 'عمومي کتنه',
+}
+
+const LEGAL_CONTENT: Record<LegalLocale, Record<LegalKind, LegalContent>> = {
+  en: { privacy: privacyContentEn, terms: termsContentEn },
+  'fa-AF': { privacy: privacyContentFa, terms: termsContentFa },
+  ps: { privacy: privacyContentPs, terms: termsContentPs },
+}
+
+export function getLegalContent(locale: LegalLocale, kind: LegalKind): LegalContent {
+  return LEGAL_CONTENT[locale][kind]
 }

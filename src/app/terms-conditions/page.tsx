@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { LegalMarketingPage } from '@/components/home/marketing/pages/LegalMarketingPage'
-import { termsContent } from '@/components/home/marketing/pages/legal-content'
+import { TermsConditionsClientPage } from '@/components/home/marketing/pages/TermsConditionsClientPage'
 
 export const metadata: Metadata = {
   title: 'Terms of use | NGOBook',
@@ -8,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function TermsConditionsPage() {
-  return <LegalMarketingPage content={termsContent} />
+  return <TermsConditionsClientPage />
 }

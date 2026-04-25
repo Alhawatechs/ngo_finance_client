@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
-import { LegalMarketingPage } from '@/components/home/marketing/pages/LegalMarketingPage'
-import { privacyContent } from '@/components/home/marketing/pages/legal-content'
+import { PrivacyPolicyClientPage } from '@/components/home/marketing/pages/PrivacyPolicyClientPage'
 
 export const metadata: Metadata = {
   title: 'Privacy notice | NGOBook',
@@ -8,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function PrivacyPolicyPage() {
-  return <LegalMarketingPage content={privacyContent} />
+  return <PrivacyPolicyClientPage />
 }

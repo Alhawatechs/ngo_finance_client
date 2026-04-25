@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useMarketingI18n } from '../useMarketingI18n'
 import type { LegalContent } from './legal-content'
 
 type Props = {
@@ -8,8 +9,10 @@ type Props = {
 }
 
 export function LegalMarketingPage({ content }: Props) {
+  const { dir } = useMarketingI18n()
+
   return (
-    <div className="bg-white text-slate-900">
+    <div className="bg-white text-slate-900" dir={dir}>
       <main className="mx-auto max-w-6xl px-5 py-10 sm:py-14">
         <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0f766e]">{content.eyebrow}</p>
@@ -77,10 +80,10 @@ export function LegalMarketingPage({ content }: Props) {
                 {content.relatedSiblingText}
               </Link>
               <Link href="/book-a-call" className="font-semibold text-[#0f766e] hover:underline">
-                Book a call
+                {content.relatedBookCallText}
               </Link>
               <Link href="/" className="font-semibold text-[#0f766e] hover:underline">
-                Overview
+                {content.relatedOverviewText}
               </Link>
             </nav>
           </div>
