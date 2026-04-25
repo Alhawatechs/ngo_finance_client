@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  NGOBook  "seek-style" icon (symbol only, no wordmark)
+  Matches the badge from logo-ngobook-seek.svg.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 560 560"
+     width="560"
+     height="560"
+     role="img"
+     aria-label="NGOBook symbol">
+  <g id="badge">
+    <rect id="block-gray"     x="60"  y="170" width="70"  height="300" fill="#B6B3AD"/>
+    <rect id="block-charcoal" x="150" y="195" width="100" height="275" fill="#2A2A2A"/>
+    <rect id="bracket-top"    x="130" y="110" width="260" height="80"  fill="#17A092"/>
+    <rect id="bracket-right"  x="310" y="110" width="80"  height="360" fill="#17A092"/>
+    <g id="dots" fill="#17A092">
+      <circle cx="440" cy="130" r="14"/>
+      <circle cx="478" cy="130" r="14"/>
+      <circle cx="516" cy="130" r="14"/>
+    </g>
+  </g>
+</svg>

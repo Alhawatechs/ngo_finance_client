@@ -4,14 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/stores/authStore'
 import { useOrganizationStore } from '@/stores/organizationStore'
-import { HomeHeader } from '@/components/home/HomeHeader'
-import { HomeHero } from '@/components/home/HomeHero'
-import { HomeAudience } from '@/components/home/HomeAudience'
-import { HomeOverview } from '@/components/home/HomeOverview'
-import { HomeFeatures } from '@/components/home/HomeFeatures'
-import { HomeTrust } from '@/components/home/HomeTrust'
-import { HomeSecurity } from '@/components/home/HomeSecurity'
-import { HomeFooter } from '@/components/home/HomeFooter'
+import { MarketingHome } from '@/components/home/MarketingHome'
 
 /**
  * Public home (`/`): org branding, authenticated redirect to dashboard, skip link,
@@ -44,16 +37,9 @@ export function PublicHome() {
         id="public-home-scroll"
         className="scroll-smooth motion-reduce:scroll-auto flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-y-contain antialiased [-webkit-overflow-scrolling:touch]"
       >
-        <HomeHeader />
         <main id="main-content" className="flex-1">
-          <HomeHero />
-          <HomeAudience />
-          <HomeOverview />
-          <HomeFeatures />
-          <HomeTrust />
-          <HomeSecurity />
+          <MarketingHome />
         </main>
-        <HomeFooter />
       </div>
     </div>
   )

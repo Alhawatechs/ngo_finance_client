@@ -1,0 +1,82 @@
+import type { MarketingMessagesBase } from '../types'
+
+export const marketingMessagesEn: MarketingMessagesBase = {
+  skipLink: 'Skip to main content',
+  nav: [
+    { id: 'overview', label: 'Overview' },
+    { id: 'journey', label: 'Journey' },
+    { id: 'modules', label: 'Modules' },
+    { id: 'pricing', label: 'Pricing' },
+    { id: 'spotlight', label: 'Spotlight' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'cta', label: 'Get Started' },
+  ],
+  header: { platformTour: 'Platform Tour', bookCall: 'Book a Call', login: 'Log in', lang: 'Language' },
+  hero: {
+    label: 'Finance Platform for NGOs',
+    brand: 'NGOBook',
+    title: 'Finance & treasury for mission-driven organizations',
+    lead: 'Unify ledger, treasury, approvals, and donor-grade reporting in one controlled platform.',
+    chip1: 'Audit-ready controls',
+    chip2: 'Treasury visibility',
+    chip3: 'Multi-office ready',
+    explore: 'Explore Modules',
+    talk: 'Talk to Sales',
+    note: 'Built for teams that need clarity for donors, auditors, and leadership.',
+  },
+  overview: {
+    eyebrow: 'Overview',
+    h2: 'Built for finance teams that need traceability',
+    lead: 'AADA ERP Finance connects accounting, treasury, and governance so reporting is consistent from transaction to board pack.',
+  },
+  journey: {
+    eyebrow: 'Journey',
+    h2: 'From setup to confident reporting',
+    lead: 'A practical implementation path for NGO finance operations.',
+    steps: [
+      { n: '01', title: 'Map Processes', text: 'Align chart of accounts, grants, and project dimensions with your process.' },
+      { n: '02', title: 'Configure Controls', text: 'Set permissions, office scope, and approval chains that match governance.' },
+      { n: '03', title: 'Run & Report', text: 'Operate daily workflows and deliver donor-ready outputs from one source.' },
+    ],
+  },
+  modules: {
+    eyebrow: 'Platform Modules',
+    h2: 'Core finance capabilities in one place',
+    lead: 'Twelve modules covering day-to-day and governance workflows.',
+  },
+  pricing: {
+    eyebrow: 'Pricing',
+    h2: 'Implementation-led pricing',
+    lead: 'Deployment and enablement are tailored to your structure and compliance requirements.',
+    cta: 'Book Discovery Call',
+    bullets: ['Guided rollout and training', 'Role-based governance setup', 'Ongoing support and updates'],
+  },
+  spotlight: { eyebrow: 'Spotlight', h2: 'Control finance operations without slowing programs', text: 'Protect governance while keeping field and HQ teams productive.' },
+  faq: {
+    eyebrow: 'FAQ',
+    h2: 'Frequently asked questions',
+    intro: 'Answers to common rollout and product questions.',
+    items: [
+      { q: 'Is this only for NGOs?', a: 'It is purpose-built for NGOs and mission-driven organizations with donor accountability.' },
+      { q: 'Can we run multi-office operations?', a: 'Yes. Office-aware access controls let teams operate safely with centralized oversight.' },
+      { q: 'Does it support approval workflows?', a: 'Yes, voucher and finance actions can be routed through configurable approvals.' },
+      { q: 'How do we get started?', a: 'Book a call and we will map your process, readiness, and phased rollout plan.' },
+    ],
+  },
+  cta: {
+    tag: 'Get Started',
+    h2: 'Ready to modernize NGO finance operations?',
+    text: 'Schedule a call to review your current workflows and map a practical implementation plan.',
+    primary: 'Open Platform',
+    secondary: 'Back to Overview',
+  },
+  footer: {
+    tagline: 'NGO Finance Management System',
+    contact: 'Contact',
+    legal: 'Legal',
+    privacy: 'Privacy Policy',
+    terms: 'Terms & Conditions',
+    website: 'Website',
+    copy: 'All rights reserved.',
+  },
+}
